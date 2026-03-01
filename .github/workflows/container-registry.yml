@@ -44,5 +44,5 @@ jobs:
 
       - name: Build and push the image
         run: |
-          docker build -t ghcr.io/devinmehringer/ducks-service:latest --file Dockerfile .
-          docker push ghcr.io/devinmehringer/ducks-service:latest
+          docker build -t ghcr.io/dmehring-p532-spring2026/ducks-service:latest --file Dockerfile .
+          docker push ghcr.io/dmehring-p532-spring2026/ducks-service:latest
