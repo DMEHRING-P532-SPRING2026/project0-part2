@@ -35,8 +35,14 @@ jobs:
           reporter: java-junit
           fail-on-error: true
 
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push the image
         run: |
-          echo ${{ secrets.GITHUB_TOKEN }} | docker login --username devinmehringer --password-stdin ghcr.io
           docker build -t ghcr.io/devinmehringer/ducks-service:latest --file Dockerfile .
           docker push ghcr.io/devinmehringer/ducks-service:latest
