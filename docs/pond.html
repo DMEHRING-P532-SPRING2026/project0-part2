@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ducks</title>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 20%;
+            border-radius: 5px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            border-radius: 5px 5px 0 0;
+            width: 100%;
+            height: 160px;
+            object-fit: contain;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+<h1>Ducks</h1>
+<div class="gallery" id="gallery"></div>
+
+<script>
+    const host = "https://ducksservice-devinmehringer.onrender.com/";
+
+    async function loadDucks() {
+        const response = await fetch(host + "/ducks");
+        const ducks = await response.json();
+        const gallery = document.getElementById("gallery");
+
+        for (const duck of ducks) {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const img = document.createElement("img");
+            img.src = host + "/ducks/" + duck.id + "/image";
+            img.alt = duck.type;
+
+            const container = document.createElement("div");
+            container.className = "container";
+            container.innerHTML = `<p>${duck.id} - ${duck.type}</p>`;
+
+            card.appendChild(img);
+            card.appendChild(container);
+            gallery.appendChild(card);
+        }
+    }
+
+    loadDucks();
+</script>
+</body>
+</html>
