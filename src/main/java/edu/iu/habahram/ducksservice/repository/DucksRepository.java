@@ -26,7 +26,15 @@ public class DucksRepository {
         if(!ducksAudioDirectory.exists()) {
             ducksAudioDirectory.mkdirs();
         }
-
+        File db = new File(DATABASE_NAME);
+        if(!db.exists()) {
+            try {
+                db.getParentFile().mkdirs();
+                db.createNewFile();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private String IMAGES_FOLDER_PATH = "ducks/images/";
