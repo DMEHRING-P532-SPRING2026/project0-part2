@@ -33,7 +33,7 @@ jobs:
 
       - name: Build and push the image
         run: |
-          docker login --username DevinMehringer --password ${{secrets.ACCESS_TOKEN}} ghcr.io
-          docker build -t ghcr.io/DevinMehringer/ducks-service:latest --file Dockerfile .  
-          docker push ghcr.io/DevinMehringer/ducks-service:latest 
+          docker login --username devinmehringer --password ${{secrets.ACCESS_TOKEN}} ghcr.io
+          docker build -t ghcr.io/devinmehringer/ducks-service:latest --file Dockerfile .  
+          docker push ghcr.io/devinmehringer/ducks-service:latest 
 
