@@ -6,6 +6,9 @@ on:
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -36,4 +39,3 @@ jobs:
           echo ${{ secrets.GITHUB_TOKEN }} | docker login --username devinmehringer --password-stdin ghcr.io
           docker build -t ghcr.io/devinmehringer/ducks-service:latest --file Dockerfile .
           docker push ghcr.io/devinmehringer/ducks-service:latest
-
